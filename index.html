@@ -224,7 +224,6 @@
 
     <script>
         function goToPage2() {
-            // كلمة السر هي تاريخ البداية المطلوب
             if(document.getElementById('passInput').value === "28/10/2025") {
                 document.getElementById('page-1').style.transform = 'translateY(-100%) scale(0.9)';
                 document.getElementById('page-1').style.opacity = '0';
@@ -255,7 +254,7 @@
         }
 
         function startCounter() {
-            // تم ضبط التاريخ ليعطي 3 شهور و 9 أيام في تاريخ اليوم (6 فبراير 2026)
+            // تاريخ البداية المعدل ليكون الفرق 3 شهور و 9 أيام في تاريخ اليوم
             const startDate = new Date("2025-10-28T00:00:00");
             
             setInterval(() => {
