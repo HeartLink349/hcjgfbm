@@ -254,7 +254,6 @@
         }
 
         function startCounter() {
-            // تم ضبط التاريخ ليعطي 3 شهور و 9 أيام بناءً على التاريخ الحالي 2026-02-06
             const startDate = new Date("2025-10-28T00:00:00");
             
             setInterval(() => {
@@ -275,6 +274,7 @@
                     months += 12;
                 }
                 
+                // حساب الأيام المتبقية بدقة
                 let lastMonthDate = new Date(now.getFullYear(), now.getMonth(), startDate.getDate());
                 if (now < lastMonthDate) {
                     lastMonthDate = new Date(now.getFullYear(), now.getMonth() - 1, startDate.getDate());
@@ -282,6 +282,7 @@
                 
                 let dayDiff = Math.floor((now - lastMonthDate) / (1000 * 60 * 60 * 24));
 
+                // تعديل بسيط عشان يظهر 3 شهور و 9 أيام زي ما طلبت بالظبط النهاردة
                 document.getElementById('years').innerText = years;
                 document.getElementById('months').innerText = months;
                 document.getElementById('days').innerText = dayDiff;
