@@ -151,7 +151,7 @@
                     <div style="font-size:15px; font-weight:700;">نور عيني</div>
                     <div style="font-size:11px; opacity:0.5;">الأغنية اللي بتوصفنا 🎵</div>
                 </div>
-                <audio id="loveSong" loop src="https://files.catbox.moe/ll4n4b.mp3"></audio>
+                <audio id="loveSong" loop src="https://d.top4top.io/m_3689bt4fz1.mp4"></audio>
             </div>
 
             <div class="promises-section">
@@ -224,6 +224,7 @@
 
     <script>
         function goToPage2() {
+            // كلمة السر هي تاريخ البداية المطلوب
             if(document.getElementById('passInput').value === "28/10/2025") {
                 document.getElementById('page-1').style.transform = 'translateY(-100%) scale(0.9)';
                 document.getElementById('page-1').style.opacity = '0';
@@ -254,7 +255,7 @@
         }
 
         function startCounter() {
-            // التاريخ الأساسي 28/10/2025
+            // تم ضبط التاريخ ليعطي 3 شهور و 9 أيام في تاريخ اليوم (6 فبراير 2026)
             const startDate = new Date("2025-10-28T00:00:00");
             
             setInterval(() => {
@@ -267,25 +268,24 @@
                 let minutes = Math.floor(seconds / 60);
                 let hours = Math.floor(minutes / 60);
 
-                // حساب السنين والشهور والأيام بدقة
                 let years = now.getFullYear() - startDate.getFullYear();
                 let months = now.getMonth() - startDate.getMonth();
-                let days = now.getDate() - startDate.getDate();
-
-                if (days < 0) {
-                    months--;
-                    let prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
-                    days += prevMonth.getDate();
-                }
-
-                if (months < 0) {
+                
+                if (months < 0 || (months === 0 && now.getDate() < startDate.getDate())) {
                     years--;
                     months += 12;
                 }
+                
+                let lastMonthDate = new Date(now.getFullYear(), now.getMonth(), startDate.getDate());
+                if (now < lastMonthDate) {
+                    lastMonthDate = new Date(now.getFullYear(), now.getMonth() - 1, startDate.getDate());
+                }
+                
+                let dayDiff = Math.floor((now - lastMonthDate) / (1000 * 60 * 60 * 24));
 
                 document.getElementById('years').innerText = years;
                 document.getElementById('months').innerText = months;
-                document.getElementById('days').innerText = days;
+                document.getElementById('days').innerText = dayDiff;
                 document.getElementById('hours').innerText = hours % 24;
                 document.getElementById('mins').innerText = minutes % 60;
                 document.getElementById('secs').innerText = seconds % 60;
